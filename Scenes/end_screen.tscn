@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://dshetrgui1vd6"]
+
+[ext_resource type="Script" path="res://Scripts/end_screen.gd" id="1_dw7gh"]
+[ext_resource type="Texture2D" uid="uid://bk5dqbm5x0k60" path="res://Assets/space_bg/space1.png" id="2_oymvf"]
+[ext_resource type="FontFile" uid="uid://ccq0hnvmkqnrl" path="res://Assets/fonts/Boxy-Bold.ttf" id="3_vbt3y"]
+[ext_resource type="Texture2D" uid="uid://b161b2ks7cqkl" path="res://Assets/star.png" id="4_4x433"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dw7gh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(640, 320)
+scale = Vector2(2, 2)
+texture = ExtResource("2_oymvf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 640.0
+offset_right = 1288.0
+offset_bottom = 705.0
+alignment = 1
+
+[node name="back" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vbt3y")
+theme_override_font_sizes/font_size = 50
+text = "back"
+
+[node name="quit" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vbt3y")
+theme_override_font_sizes/font_size = 50
+text = "quit"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 1240.0
+offset_bottom = 144.0
+theme_override_fonts/normal_font = ExtResource("3_vbt3y")
+theme_override_font_sizes/normal_font_size = 100
+text = "congratulations"
+
+[node name="time" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 56.0
+offset_top = 304.0
+offset_right = 1240.0
+offset_bottom = 432.0
+theme_override_fonts/normal_font = ExtResource("3_vbt3y")
+theme_override_font_sizes/normal_font_size = 100
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 56.0
+offset_top = 200.0
+offset_right = 1248.0
+offset_bottom = 328.0
+theme_override_fonts/normal_font = ExtResource("3_vbt3y")
+theme_override_font_sizes/normal_font_size = 64
+text = "you saved your planet in :"
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(24, 72)
+scale = Vector2(0.58, 0.58)
+texture = ExtResource("4_4x433")
+
+[node name="ScreenChangeTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="ScreenChangeTimer" to="." method="_on_screen_change_timer_timeout"]

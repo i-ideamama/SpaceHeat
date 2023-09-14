@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://imbuvok8hujy"]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_nli0o"]
+[ext_resource type="PackedScene" uid="uid://dgwpo8j0sdyel" path="res://Scenes/player.tscn" id="1_ujv0t"]
+[ext_resource type="Texture2D" uid="uid://bk5dqbm5x0k60" path="res://Assets/space_bg/space1.png" id="2_n18ny"]
+[ext_resource type="Texture2D" uid="uid://dvwdpm3b7q3kd" path="res://Assets/progression.png" id="4_yolxp"]
+[ext_resource type="FontFile" uid="uid://ccq0hnvmkqnrl" path="res://Assets/fonts/Boxy-Bold.ttf" id="5_i7s68"]
+[ext_resource type="AudioStream" uid="uid://4c8ihufjmduh" path="res://Assets/Music/through space.ogg" id="6_q5jg3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjos8"]
+size = Vector2(4096, 1)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_nli0o")
+
+[node name="space_bg1" type="Sprite2D" parent="."]
+position = Vector2(-1024, 1024)
+scale = Vector2(2, 2)
+texture = ExtResource("2_n18ny")
+
+[node name="space_bg2" type="Sprite2D" parent="."]
+position = Vector2(-1024, -1024)
+scale = Vector2(2, 2)
+texture = ExtResource("2_n18ny")
+
+[node name="space_bg3" type="Sprite2D" parent="."]
+position = Vector2(1024, -1024)
+scale = Vector2(2, 2)
+texture = ExtResource("2_n18ny")
+
+[node name="space_bg4" type="Sprite2D" parent="."]
+position = Vector2(1024, 1024)
+scale = Vector2(2, 2)
+texture = ExtResource("2_n18ny")
+
+[node name="Player" parent="." instance=ExtResource("1_ujv0t")]
+position = Vector2(1024, -1024)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(0, 2048)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+shape = SubResource("RectangleShape2D_bjos8")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(0, -2048)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+shape = SubResource("RectangleShape2D_bjos8")
+
+[node name="Wall3" type="StaticBody2D" parent="."]
+position = Vector2(2048, 0)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
+shape = SubResource("RectangleShape2D_bjos8")
+
+[node name="Wall4" type="StaticBody2D" parent="."]
+position = Vector2(-2048, 0)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4"]
+shape = SubResource("RectangleShape2D_bjos8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="progression" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(400, 64)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_yolxp")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 912.0
+offset_right = 1278.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("5_i7s68")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SceneChangeTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_q5jg3")
+autoplay = true
+
+[connection signal="timeout" from="SceneChangeTimer" to="." method="_on_scene_change_timer_timeout"]

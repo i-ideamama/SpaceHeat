@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4gagx45xtpyq"]
+
+[ext_resource type="Script" path="res://Scripts/i_am_lost.gd" id="1_60ulb"]
+[ext_resource type="Texture2D" uid="uid://bk5dqbm5x0k60" path="res://Assets/space_bg/space1.png" id="2_dr55i"]
+[ext_resource type="FontFile" uid="uid://ccq0hnvmkqnrl" path="res://Assets/fonts/Boxy-Bold.ttf" id="3_51ssr"]
+
+[node name="IAmLost" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_60ulb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(540, 360)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_dr55i")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 16.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_51ssr")
+theme_override_font_sizes/normal_font_size = 20
+text = "1. Author's name: kurtk84
+   Name of Work: Space skybox
+   URL: https://opengameart.org/content/space-skybox-1
+   License: PUBLIC DOMAIN (CC0)
+
+2. Author's name: William.Thompsonj
+   Name of Work: Boxy Bold - TrueType Font
+   URL: https://opengameart.org/content/boxy-bold-truetype-font
+   License: PUBLIC DOMAIN (CC0)
+
+3. Author's name: Justin Nichol
+   Name of Work: 20 planet sprites
+   URL: https://opengameart.org/content/20-planet-sprites
+   License: CC-BY 3.0, GPL 2.0
+
+4. Author's name: INFECTiON656
+   Name of Work: RPG GUI Selection Arrow
+   URL: https://opengameart.org/content/rpg-gui-selection-arrow
+   License: PUBLIC DOMAIN (CC0)
+
+5. Author's name: maxstack
+   Name of Work: Through Space
+   URL: https://opengameart.org/content/through-space
+   License: CC-BY-SA 3.0
+
+6. Author's name: Kenney
+   Name of Work: Game icons
+   URL: https://opengameart.org/content/game-icons
+   License: PUBLIC DOMAIN (CC0)q"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_top = 640.0
+offset_right = 1280.0
+offset_bottom = 705.0
+alignment = 1
+
+[node name="back" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_51ssr")
+theme_override_font_sizes/font_size = 50
+text = "back
+"
+
+[node name="SceneChangeTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="timeout" from="SceneChangeTimer" to="." method="_on_scene_change_timer_timeout"]

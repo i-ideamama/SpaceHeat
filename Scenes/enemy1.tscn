@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://lv23x42m3f6m"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_pjbjt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exik4"]
+radius = 97.32
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_og64d"]
+radius = 499.025
+
+[node name="Enemy1" type="CharacterBody2D"]
+script = ExtResource("1_pjbjt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_exik4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_og64d")
+
+[node name="StateTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="PlayerFollowTimer" type="Timer" parent="."]
+wait_time = 8.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="StateTimer" to="." method="_on_state_timer_timeout"]
+[connection signal="timeout" from="PlayerFollowTimer" to="." method="_on_player_follow_timer_timeout"]
