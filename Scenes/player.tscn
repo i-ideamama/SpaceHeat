@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgwpo8j0sdyel"]
+[gd_scene load_steps=7 format=3 uid="uid://dgwpo8j0sdyel"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_su2ta"]
 [ext_resource type="Texture2D" uid="uid://c5hvdxuw2mn33" path="res://Assets/planets/1.png" id="2_3jqos"]
+[ext_resource type="AudioStream" uid="uid://dr6c21q60jl26" path="res://Assets/Music/boom1.wav" id="3_o4tid"]
+[ext_resource type="PackedScene" uid="uid://bdkwkiwlxoyac" path="res://Scenes/arrow.tscn" id="4_tku5q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_22mbi"]
 radius = 97.3242
@@ -31,5 +33,11 @@ shape = SubResource("CircleShape2D_eti6w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_3jqos")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_o4tid")
+
+[node name="arrow" parent="." instance=ExtResource("4_tku5q")]
+visible = false
 
 [connection signal="body_entered" from="ColourSwapArea" to="." method="_on_colour_swap_area_body_entered"]

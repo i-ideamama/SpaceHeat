@@ -36,9 +36,13 @@ func _physics_process(_delta):
 
 func _on_colour_swap_area_body_entered(body):
 	if "Enemy" in body.name:
+		$AudioStreamPlayer2D.play()
 		var enem_colour_plus_1 = body.colour_number +1
 		var enem_colour_minus_1 = body.colour_number -1
 		if ((global_variables.player_colour_number == enem_colour_minus_1) or (global_variables.player_colour_number == enem_colour_plus_1)):
 			global_variables.swap_colour(body)
 			$Sprite2D.texture = load("res://Assets/planets/{num}.png".format({"num": global_variables.player_colour_number}))
 			global_variables.check_game_over()
+
+func arr(body):
+	$arrow.rotation=get_angle_to(body.position)

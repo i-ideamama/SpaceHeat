@@ -30,6 +30,11 @@ func enemy_setup():
 	$StateTimer.start()
 
 func _physics_process(_delta):
+	player_colour_number_plus1 = global_variables.player_colour_number+1
+	if (player_colour_number_plus1 == colour_number):
+		get_parent().get_node("Player/arrow").visible=true
+		get_parent().get_node("Player").arr(self)	
+	
 	
 	if state ==  "MOVE":
 		if player_in_vicinity == true:
@@ -83,6 +88,8 @@ func _on_state_timer_timeout():
 	elif player_in_vicinity == true:
 		pass
 
+
+
 func _on_area_2d_body_entered(body):
 	if body.name == "Player":
 		state = "MOVE"
@@ -124,3 +131,6 @@ func _on_player_follow_timer_timeout():
 	run_away_from_player = null
 	direction*=-1
 	$StateTimer.start()
+
+
+

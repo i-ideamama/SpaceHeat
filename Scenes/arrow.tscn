@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdkwkiwlxoyac"]
+
+[ext_resource type="Texture2D" uid="uid://bacmpcxcaax3n" path="res://Assets/arrowUp.png" id="1_jgqtn"]
+
+[node name="arrow" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_jgqtn")

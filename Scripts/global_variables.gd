@@ -3,7 +3,7 @@ extends Node
 var player_colour_number
 var player_position
 var game_over = false
-var elapsed_time 
+var elapsed_time = 300
 
 func swap_colour(enemy):
 	if "Enemy" in enemy.name:
