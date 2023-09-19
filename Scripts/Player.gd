@@ -6,10 +6,9 @@ extends CharacterBody2D
 @export var friction = 0.07
 @export var acceleration = 0.12
 
-
 func _ready():
 	global_variables.player_colour_number = 1
-
+	get_parent().get_node("Trail").clear_points()
 
 func get_input():
 	var input = Vector2()
@@ -33,6 +32,10 @@ func _physics_process(_delta):
 		velocity = velocity.lerp(Vector2.ZERO, friction)
 	move_and_slide()
 
+func _process(delta):
+	get_parent().get_node("Trail").add_point(position, len(get_parent().get_node("Trail").points))
+	if(len(get_parent().get_node("Trail").points)>20):
+		get_parent().get_node("Trail").remove_point(0)
 
 func _on_colour_swap_area_body_entered(body):
 	if "Enemy" in body.name:

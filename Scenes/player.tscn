@@ -38,6 +38,5 @@ texture = ExtResource("2_3jqos")
 stream = ExtResource("3_o4tid")
 
 [node name="arrow" parent="." instance=ExtResource("4_tku5q")]
-visible = false
 
 [connection signal="body_entered" from="ColourSwapArea" to="." method="_on_colour_swap_area_body_entered"]

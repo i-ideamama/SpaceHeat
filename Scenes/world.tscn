@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://imbuvok8hujy"]
+[gd_scene load_steps=10 format=3 uid="uid://imbuvok8hujy"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_nli0o"]
 [ext_resource type="PackedScene" uid="uid://dgwpo8j0sdyel" path="res://Scenes/player.tscn" id="1_ujv0t"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dvwdpm3b7q3kd" path="res://Assets/progression.png" id="4_yolxp"]
 [ext_resource type="FontFile" uid="uid://ccq0hnvmkqnrl" path="res://Assets/fonts/Boxy-Bold.ttf" id="5_i7s68"]
 [ext_resource type="AudioStream" uid="uid://4c8ihufjmduh" path="res://Assets/Music/through space.ogg" id="6_q5jg3"]
+[ext_resource type="Texture2D" uid="uid://cmgpayolp8x2q" path="res://Assets/tex.png" id="7_7a11l"]
+
+[sub_resource type="Gradient" id="Gradient_vua0v"]
+offsets = PackedFloat32Array(0, 0.030837, 0.625551, 0.643172, 0.894273)
+colors = PackedColorArray(0, 0, 0, 1, 0.482276, 0.482276, 0.482276, 1, 0.537255, 0.317647, 1, 1, 0.0951542, 0.0951542, 0.0951542, 1, 0.77533, 0.77533, 0.77533, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjos8"]
 size = Vector2(4096, 1)
@@ -32,6 +37,14 @@ texture = ExtResource("2_n18ny")
 position = Vector2(1024, 1024)
 scale = Vector2(2, 2)
 texture = ExtResource("2_n18ny")
+
+[node name="Trail" type="Line2D" parent="."]
+points = PackedVector2Array(-3, 1.99997, -155, 37, -257, 72, -241, 186, -124, 240, 22, 243)
+width = 40.0
+default_color = Color(1, 0.670588, 1, 1)
+gradient = SubResource("Gradient_vua0v")
+texture = ExtResource("7_7a11l")
+joint_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("1_ujv0t")]
 position = Vector2(1024, -1024)

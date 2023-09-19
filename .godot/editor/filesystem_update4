@@ -1,0 +1,4 @@
+res://Scenes/player.tscn
+res://Scripts/Player.gd
+res://Scenes/home_screen.tscn
+res://Scenes/world.tscn
